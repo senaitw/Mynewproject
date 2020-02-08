@@ -1,0 +1,71 @@
+package test;
+
+import java.util.concurrent.TimeUnit;
+
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class Iframe {
+	
+@Test
+
+public void iframe() throws InterruptedException {
+System.setProperty("webdriver.chrome.driver", "./driver/chromedriver.exe");
+WebDriver driver = new ChromeDriver();
+driver.manage().deleteAllCookies();
+driver.manage().window().maximize();
+driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+driver.get("https://docs.oracle.com/javase/8/docs/api/");
+
+Thread.sleep(3000);
+driver.switchTo().frame("tFrame");
+Thread.sleep(3000);
+driver.findElement(By.linkText("java.io")).click();
+Thread.sleep(3000);
+
+String late = "packageListFrame";
+driver.switchTo().frame(late);
+//new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.linkText("Closeable")));
+Thread.sleep(5000);
+driver.findElement(By.partialLinkText("AbstractAction")).click();
+
+
+
+
+
+
+
+
+
+
+/*Thread.sleep(3000);
+driver.switchTo().frame(0);
+driver.findElement(By.linkText("java.applet")).click();
+
+
+Thread.sleep(3000);
+driver.switchTo().defaultContent();
+Thread.sleep(3000);
+driver.findElement(By.linkText("AppletContext")).click();
+Thread.sleep(3000);
+*/
+
+
+
+//
+
+
+//driver.switchTo().frame("//frame[@name='packageListFrame']");
+//Thread.sleep(3000);
+//driver.switchTo().frame(1);
+//driver.findElement(By.linkText("")).click();
+
+	
+}
+	
+}

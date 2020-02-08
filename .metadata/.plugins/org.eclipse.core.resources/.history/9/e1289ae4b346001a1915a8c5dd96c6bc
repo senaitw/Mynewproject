@@ -1,0 +1,12 @@
+package test;
+
+public class NewDepositTest {
+
+@Test
+	public void userShoulBeAbleToAddnewdeposittest() {
+		
+		
+	}
+	
+	
+}

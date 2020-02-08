@@ -1,0 +1,60 @@
+package test;
+
+import java.util.concurrent.TimeUnit;
+
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import junit.framework.Assert;
+
+public class Ass3 {
+
+@Test
+  public void ass() throws InterruptedException  {
+	
+	System.setProperty("webdriver.chrome.driver", "./driver/chromedriver.exe");
+	WebDriver driver = new ChromeDriver();
+	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	driver.manage().window().maximize();
+	driver.get("http://techfios.com/test/billing/?ng=admin/");
+	driver.findElement(By.xpath("//*[@type='text']")).sendKeys("techfiosdemo@gmail.com");
+	driver.findElement(By.xpath("//*[@placeholder='Password']")).sendKeys("abc123");
+	driver.findElement(By.xpath("//*[@type='submit']")).click();
+	 
+  driver.findElement(By.xpath("//a[contains(text(),'Add Deposit')]")).click();
+   driver.findElement(By.xpath("//select[@id ='account']//option[text()='housedownpayment']")).click();
+	Thread.sleep(3000);
+	driver.findElement(By.xpath("//input[@name='description']")).sendKeys("Abalance");
+driver.findElement(By.xpath("//input[@class='form-control amount']")).sendKeys("10,000.00");
+	driver.findElement(By.xpath("//*[@id='submit']")).click();
+	driver.close();
+	driver.quit();
+	
+	//driver.findElement(By.linkText("Account balance")).click();
+	//String expectedTitle = "";
+	//String actualTitle = driver.getTitle();
+	//Select senait = new Select();
+	
+	// wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(AddDeposite)));
+
+//	throw new runtimeException("Test failed!");
+//	Assert.assertEquals("Dashboard did not display", expectedTitle, actualTitle);
+//	
+//	String AddDeposite = "//a[contains(text(),'Add De')]";		
+	// WebDriverWait wait = new  WebDriverWait(driver,10);	
+   //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(AddDeposite)));
+
+		
+//	WebDriverWait wait = new  WebDriverWait(driver,10);
+	//wait.until(ExpectedConditions.elementToBeClickable(By.xpath(AddDeposit)));
+	
+	}
+
+}
+  
+

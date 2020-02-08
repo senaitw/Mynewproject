@@ -1,0 +1,66 @@
+package test;
+
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class addnewaccount {
+//WebDriver driver;
+	@Test
+	public void AddNewAccount() throws InterruptedException {
+		
+	System.setProperty("webdriver.chrome.driver", "./Driver/chromedriver.exe");
+	WebDriver driver = new ChromeDriver();
+	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	driver.manage().window().maximize();
+	
+	driver.get("http://techfios.com/test/billing/?ng=login/");
+	
+	driver.findElement(By.cssSelector("input#username")).sendKeys("techfiosdemo@gmail.com");
+	driver.findElement(By.xpath("//input[@id='password']")).sendKeys("abc123");
+	driver.findElement(By.xpath("//button[@type='submit']")).click();
+	
+	String expected_title = "Dashboard- TechFios Test Application - Billing";
+	Assert.assertEquals(driver.getTitle(), expected_title, "DBT did not display");
+	Thread.sleep(3000);
+	driver.findElement(By.xpath("//ul[@id='side-menu']/descendant::span[1]")).click();
+	driver.findElement(By.xpath("//ul[@id='side-menu']/descendant::span[8]")).click();
+	driver.findElement(By.xpath("//a[text()='New Account']")).click();
+	
+	Random rd = new Random();
+	//int Expe= rd.nextInt(999);
+	//String Expected_Account="ABC"+ Expe;
+	Thread.sleep(3000);
+	//instead of using storing variable we use directly rd.nextInt()
+	driver.findElement(By.xpath("//input[@id='account']")).sendKeys("Brave" +rd.nextInt(100));
+	Thread.sleep(3000);
+	driver.findElement(By.xpath("//input[@id='description']")).sendKeys("GetJobSoon"+ rd.nextInt(100));
+	driver.findElement(By.xpath("//input[@id='balance']")).sendKeys("10");
+	
+	Thread.sleep(3000);
+	driver.findElement(By.xpath("//button[@class='btn btn-primary']")).click();
+	Thread.sleep(3000);
+	//WebDriverWait wait = 
+	new WebDriverWait(driver,40).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@class='alert alert-success fade in']")));
+	
+	Thread.sleep(3000);
+	JavascriptExecutor js = (JavascriptExecutor)driver;
+	js.executeScript("scroll(0,20000)");
+	
+	
+	
+	}
+	
+	
+	
+	
+}
